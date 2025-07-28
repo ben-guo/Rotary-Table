@@ -54,6 +54,10 @@ class RotaryTableDriver:
             
         try:
             data = bytes(command)
+
+            hex_bytes = '  '.join([f'0x{b:02X}' for b in command])  # for debugging / verifying
+            print(f"[SEND] {hex_bytes}")
+            
             self.serial_conn.write(data)
             self.serial_conn.flush()
             time.sleep(0.05)  # allow time for command to be processed
